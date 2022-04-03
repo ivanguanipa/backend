@@ -4,20 +4,21 @@ import { RepositorioUsuario } from 'src/dominio/usuario/puerto/repositorio/repos
 import { SinonStubbedInstance } from 'sinon';
 import { createStubObj } from '../../../util/create-object.stub';
 
-
 describe('ServicioRegistrarUsuario', () => {
-
   let servicioRegistrarUsuario: ServicioRegistrarUsuario;
   let repositorioUsuarioStub: SinonStubbedInstance<RepositorioUsuario>;
 
   beforeEach(() => {
-
-    repositorioUsuarioStub = createStubObj<RepositorioUsuario>(['existeNombreUsuario', 'guardar']);
-    servicioRegistrarUsuario = new ServicioRegistrarUsuario(repositorioUsuarioStub);
+    repositorioUsuarioStub = createStubObj<RepositorioUsuario>([
+      'existeNombreUsuario',
+      'guardar',
+    ]);
+    servicioRegistrarUsuario = new ServicioRegistrarUsuario(
+      repositorioUsuarioStub,
+    );
   });
 
   it('si el nombre de usuario ya existe no se puede crear y deberia retonar error', async () => {
-
     repositorioUsuarioStub.existeNombreUsuario.returns(Promise.resolve(true));
 
     await expect(

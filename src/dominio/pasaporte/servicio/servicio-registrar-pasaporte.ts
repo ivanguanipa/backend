@@ -4,18 +4,18 @@ import { ErrorDeNegocio } from 'src/dominio/errores/error-de-negocio';
 import colombianHolidays from 'colombian-holidays';
 
 export class ServicioRegistrarPasaporte {
+  public AMOUNT_SERVICE = 100;
   constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {}
 
   isInWeekend(fecha: Date) {
     const dayOfWeek = new Date(fecha).getDay();
-    console.log(fecha, dayOfWeek);
     return dayOfWeek === 5 || dayOfWeek === 6;
   }
 
-  async isHolliday(date: Date) {
+  isHolliday(date: Date) {
     let is = false;
     const hollidays = colombianHolidays(date.getFullYear());
-    await hollidays.map((item) => {
+    hollidays.forEach((item) => {
       if (new Date(item.date).getTime() === date.getTime()) {
         is = true;
       }
@@ -25,10 +25,9 @@ export class ServicioRegistrarPasaporte {
 
   async calculateResources(initDate) {
     let date = new Date(initDate);
-    console.log('date', date);
-    let amount = 10;
+    let amount = this.AMOUNT_SERVICE;
     let valid = false;
-    while (valid != true) {
+    while (!valid) {
       date = new Date(date.setDate(date.getDate() + 1));
       if (date.getDay() != 5 && date.getDay() != 6) {
         if (await this.isHolliday(date)) {
@@ -56,12 +55,9 @@ export class ServicioRegistrarPasaporte {
     const { amount, appointment_date } = await this.calculateResources(
       pasaporte.application_date,
     );
-
     pasaporte.appointment_date = appointment_date;
     pasaporte.amount = amount;
-    console.log('pasando ejecutar');
     const data = await this._repositorioPasaporte.guardar(pasaporte);
-    console.log('data aca ejecutar', data);
     return data;
   }
 }

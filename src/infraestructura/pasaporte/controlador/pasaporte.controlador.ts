@@ -28,7 +28,7 @@ export class PasaporteControlador {
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async crear(@Body() comandoRegistrarPasaporte: ComandoRegistrarPasaporte) {
-    return await this._manejadorRegistrarPasaporte.ejecutar(
+    return this._manejadorRegistrarPasaporte.ejecutar(
       comandoRegistrarPasaporte,
     );
   }
@@ -36,9 +36,7 @@ export class PasaporteControlador {
   @Delete('delete')
   @UsePipes(new ValidationPipe({ transform: true }))
   async eliminar(@Body() comandoEliminarPasaporte: ComandoEliminarPasaporte) {
-    return await this._manejadorEliminarPasaporte.ejecutar(
-      comandoEliminarPasaporte,
-    );
+    return this._manejadorEliminarPasaporte.ejecutar(comandoEliminarPasaporte);
   }
 
   @Get()
