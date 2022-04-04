@@ -36,7 +36,8 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
   }
 
   async mostrar(id): Promise<Partial<Pasaporte>> {
-    return this.repositorio.findOne({ id, created_at: IsNull() });
+    console.log('RepositorioPasaporteMysql mostrar', id);
+    return this.repositorio.findOne({ id, deleted_at: IsNull() });
   }
 
   async eliminar(id) {
