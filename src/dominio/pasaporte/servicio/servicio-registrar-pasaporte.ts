@@ -48,7 +48,7 @@ export class ServicioRegistrarPasaporte {
       await this._repositorioPasaporte.existePasaporte(pasaporte.document_id)
     ) {
       throw new ErrorDeNegocio(
-        `El dpcumento ID ${pasaporte.document_id} ya cuenta con una solicitud de pasaporte activa`,
+        `El documento ID ${pasaporte.document_id} ya cuenta con una solicitud de pasaporte activa`,
       );
     }
 
