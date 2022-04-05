@@ -42,7 +42,7 @@ pipeline{
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
 			 		withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.ceiba.adn:ceiba.adn.pasaporte.back.ivan.guanipa -Dsonar.projectName=CeibaADN-PasaporteBack(ivan.guanipa) -Dproject.settings=./sonar-project.properties"
+                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.ceiba.adn:ceiba.adn.pasaporte.back.ivan.guanipa -Dsonar.projectName=CeibaADN-PasaporteBack-ivan.guanipa -Dproject.settings=./sonar-project.properties"
                       }
 			 	}
 			 }
