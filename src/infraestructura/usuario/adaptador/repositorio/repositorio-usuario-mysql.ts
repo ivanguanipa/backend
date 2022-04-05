@@ -13,7 +13,7 @@ export class RepositorioUsuarioMysql implements RepositorioUsuario {
   ) {}
 
   async existeNombreUsuario(nombre: string): Promise<boolean> {
-    return (await this.repositorio.count({ nombre })) > 0;
+    return (await this.repositorio.count({ where: [{ nombre }] })) > 0;
   }
 
   async guardar(usuario: Usuario) {

@@ -15,8 +15,7 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
   async existePasaporte(document_id: number): Promise<boolean> {
     return (
       (await this.repositorio.count({
-        document_id: document_id,
-        deleted_at: IsNull(),
+        where: [{ document_id, deleted_at: IsNull() }],
       })) > 0
     );
   }
@@ -37,7 +36,7 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
 
   async mostrar(id): Promise<Partial<Pasaporte>> {
     console.log('RepositorioPasaporteMysql mostrar', id);
-    return this.repositorio.findOne({ id, deleted_at: IsNull() });
+    return this.repositorio.findOne({ where: [{ id, deleted_at: IsNull() }] });
   }
 
   async eliminar(id) {
