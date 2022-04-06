@@ -9,9 +9,7 @@ export class ManejadorMostrarPasaporte {
   constructor(private _daoPasaporte: DaoPasaporte) {}
 
   async ejecutar(id): Promise<PasaporteDto> {
-    console.log('pasando ManejadorMostrarPasaporte');
     const pasaporte = await this._daoPasaporte.mostrar(id);
-    console.log('pasaporte', typeof pasaporte);
     if (Object.keys(pasaporte).length === 0) {
       throw new ErrorDeNegocio(`No existe registro de pasaporte`);
     }

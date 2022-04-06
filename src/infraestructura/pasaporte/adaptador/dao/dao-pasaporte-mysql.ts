@@ -12,7 +12,6 @@ export class DaoPasaporteMysql implements DaoPasaporte {
   ) {}
 
   async listar(): Promise<PasaporteDto[]> {
-    console.log('pasando listar DaoPasaporteMysql');
     return this.entityManager.query(
       'SELECT * FROM pasaporte u where deleted_at is null',
     );

@@ -10,7 +10,6 @@ export class ManejadorRegistrarPasaporte {
   ) {}
 
   async ejecutar(comandoRegistrarPasaporte: ComandoRegistrarPasaporte) {
-    console.log('pasando ManejadorRegistrarPasaporte');
     return await this._servicioRegistrarPasaporte.ejecutar(
       new Pasaporte(
         comandoRegistrarPasaporte.document_id,

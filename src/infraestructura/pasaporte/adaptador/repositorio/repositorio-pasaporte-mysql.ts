@@ -30,17 +30,14 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
     entidad.document_id = pasaporte.document_id;
     entidad.appointment_date = pasaporte.appointment_date;
     entidad.application_date = new Date(pasaporte.application_date);
-    console.log('pasando guardar');
     return await this.repositorio.save(entidad);
   }
 
   async mostrar(id): Promise<Partial<Pasaporte>> {
-    console.log('RepositorioPasaporteMysql mostrar', id);
     return this.repositorio.findOne({ where: [{ id, deleted_at: IsNull() }] });
   }
 
   async eliminar(id) {
-    console.log('RepositorioPasaporteMysql');
     this.repositorio.update(id, { deleted_at: new Date() });
     return { success: true };
   }

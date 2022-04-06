@@ -8,7 +8,6 @@ export class ManejadorListarPasaporte {
   constructor(private _daoPasaporte: DaoPasaporte) {}
 
   async ejecutar(): Promise<PasaporteDto[]> {
-    console.log('pasando ManejadorListarPasaporte');
     return this._daoPasaporte.listar();
   }
 }

@@ -5,10 +5,7 @@ export class ServicioEliminarPasaporte {
   constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {}
 
   async eliminar(id: number) {
-    console.log('llegando eliminar', id);
     const passport = await this._repositorioPasaporte.mostrar(id);
-    console.log('resultado busqueda', passport);
-    console.log(passport);
     if (!passport) {
       throw new ErrorDeNegocio(`No existe registro de pasaporte`);
     }

@@ -46,7 +46,6 @@ export class PasaporteControlador {
 
   @Get('/show/:id')
   async mostrar(@Param('id') id): Promise<PasaporteDto> {
-    console.log('id', id);
     return this._manejadorMostrarPasaporte.ejecutar(id);
   }
 }
