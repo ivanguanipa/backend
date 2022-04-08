@@ -29,7 +29,6 @@ describe('PasaporteController', () => {
       jest
         .spyOn(pasaporteControlador, 'listar')
         .mockImplementation(async () => {
-          console.log('listar', result);
           return result;
         });
       expect(await pasaporteControlador.listar()).toBe(result);
