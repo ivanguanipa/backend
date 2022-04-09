@@ -30,7 +30,7 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
     entidad.documentId = pasaporte.documentId;
     entidad.appointmentDate = pasaporte.appointmentDate;
     entidad.applicationDate = new Date(pasaporte.applicationDate);
-    return await this.repositorio.save(entidad);
+    return this.repositorio.save(entidad);
   }
 
   async mostrar(id): Promise<Partial<Pasaporte>> {

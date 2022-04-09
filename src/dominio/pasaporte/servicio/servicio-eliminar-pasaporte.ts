@@ -9,6 +9,6 @@ export class ServicioEliminarPasaporte {
     if (!passport) {
       throw new ErrorDeNegocio(`No existe registro de pasaporte`);
     }
-    return await this._repositorioPasaporte.eliminar(id);
+    return this._repositorioPasaporte.eliminar(id);
   }
 }
