@@ -4,8 +4,10 @@ import { ErrorDeNegocio } from 'src/dominio/errores/error-de-negocio';
 import colombianHolidays from 'colombian-holidays';
 
 export class ServicioRegistrarPasaporte {
-  public AMOUNT_SERVICE = 100;
-  constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {}
+  AMOUNT_SERVICE: number;
+  constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {
+    this.AMOUNT_SERVICE = 100;
+  }
 
   isInWeekend(fecha: Date) {
     const dayOfWeek = new Date(fecha).getDay();
