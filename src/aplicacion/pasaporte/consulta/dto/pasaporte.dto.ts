@@ -5,5 +5,5 @@ export class PasaporteDto {
   fullname: string;
 
   @ApiProperty()
-  document_id: string;
+  documentId: string;
 }

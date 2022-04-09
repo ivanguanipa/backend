@@ -1,31 +1,31 @@
 export class Pasaporte {
   #id: number;
-  #document_id: number;
+  #documentId: number;
   #fullname: string;
   #address: string;
-  #created_at: Date;
-  #deleted_at: Date;
+  #createdAt: Date;
+  #deletedAt: Date;
   #birthdate: Date;
-  #appointment_date: Date;
-  #application_date: Date;
+  #appointmentDate: Date;
+  #applicationDate: Date;
   #amount: number;
 
   constructor(
-    document_id: number,
+    documentId: number,
     fullname: string,
     address: string,
     birthdate: Date,
     amount: number,
-    application_date: Date,
-    appointment_date: Date,
+    applicationDate: Date,
+    appointmentDate: Date,
   ) {
-    this.#document_id = document_id;
+    this.#documentId = documentId;
     this.#fullname = fullname;
     this.#address = address;
     this.#birthdate = birthdate;
     this.#amount = amount;
-    this.#application_date = application_date;
-    this.#appointment_date = appointment_date;
+    this.#applicationDate = applicationDate;
+    this.#appointmentDate = appointmentDate;
   }
 
   get id(): number {
@@ -46,22 +46,22 @@ export class Pasaporte {
   set amount(value: number) {
     this.#amount = value;
   }
-  get created_at(): Date {
-    return this.#created_at;
+  get createdAt(): Date {
+    return this.#createdAt;
   }
-  get deleted_at(): Date {
-    return this.#deleted_at;
+  get deletedAt(): Date {
+    return this.#deletedAt;
   }
-  get application_date(): Date {
-    return this.#application_date;
+  get applicationDate(): Date {
+    return this.#applicationDate;
   }
-  get document_id(): number {
-    return this.#document_id;
+  get documentId(): number {
+    return this.#documentId;
   }
-  get appointment_date(): Date {
-    return this.#appointment_date;
+  get appointmentDate(): Date {
+    return this.#appointmentDate;
   }
-  set appointment_date(appointment_date: Date) {
-    this.#appointment_date = appointment_date;
+  set appointmentDate(appointmentDate: Date) {
+    this.#appointmentDate = appointmentDate;
   }
 }

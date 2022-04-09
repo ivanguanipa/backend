@@ -7,7 +7,7 @@ export class ManejadorEliminarPasaporte {
   constructor(private _servicioRegistrarPasaporte: ServicioEliminarPasaporte) {}
 
   async ejecutar(comandoEliminarPasaporte: ComandoEliminarPasaporte) {
-    return await this._servicioRegistrarPasaporte.eliminar(
+    return this._servicioRegistrarPasaporte.eliminar(
       comandoEliminarPasaporte.id,
     );
   }

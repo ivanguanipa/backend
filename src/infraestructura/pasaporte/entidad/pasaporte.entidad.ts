@@ -6,7 +6,7 @@ export class PasaporteEntidad {
   id: number;
 
   @Column()
-  document_id: number;
+  documentId: number;
 
   @Column()
   fullname: string;
@@ -21,14 +21,14 @@ export class PasaporteEntidad {
   birthdate: Date;
 
   @Column()
-  application_date: Date;
+  applicationDate: Date;
 
   @Column()
-  appointment_date: Date;
+  appointmentDate: Date;
 
   @Column()
-  created_at: Date;
+  createdAt: Date;
 
   @Column({ nullable: true })
-  deleted_at: Date;
+  deletedAt: Date;
 }

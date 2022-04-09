@@ -12,10 +12,10 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
     private readonly repositorio: Repository<PasaporteEntidad>,
   ) {}
 
-  async existePasaporte(document_id: number): Promise<boolean> {
+  async existePasaporte(documentId: number): Promise<boolean> {
     return (
       (await this.repositorio.count({
-        where: [{ document_id, deleted_at: IsNull() }],
+        where: [{ documentId, deletedAt: IsNull() }],
       })) > 0
     );
   }
@@ -24,21 +24,21 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
     const entidad = new PasaporteEntidad();
     entidad.fullname = pasaporte.fullname;
     entidad.address = pasaporte.address;
-    entidad.created_at = new Date();
+    entidad.createdAt = new Date();
     entidad.birthdate = pasaporte.birthdate;
     entidad.amount = pasaporte.amount;
-    entidad.document_id = pasaporte.document_id;
-    entidad.appointment_date = pasaporte.appointment_date;
-    entidad.application_date = new Date(pasaporte.application_date);
+    entidad.documentId = pasaporte.documentId;
+    entidad.appointmentDate = pasaporte.appointmentDate;
+    entidad.applicationDate = new Date(pasaporte.applicationDate);
     return await this.repositorio.save(entidad);
   }
 
   async mostrar(id): Promise<Partial<Pasaporte>> {
-    return this.repositorio.findOne({ where: [{ id, deleted_at: IsNull() }] });
+    return this.repositorio.findOne({ where: [{ id, deletedAt: IsNull() }] });
   }
 
   async eliminar(id) {
-    this.repositorio.update(id, { deleted_at: new Date() });
+    this.repositorio.update(id, { deletedAt: new Date() });
     return { success: true };
   }
 }

@@ -13,7 +13,7 @@ export class DaoPasaporteMysql implements DaoPasaporte {
 
   async listar(): Promise<PasaporteDto[]> {
     return this.entityManager.query(
-      'SELECT * FROM pasaporte u where deleted_at is null',
+      'SELECT * FROM pasaporte u where deletedAt is null',
     );
   }
   async mostrar(id): Promise<PasaporteDto> {

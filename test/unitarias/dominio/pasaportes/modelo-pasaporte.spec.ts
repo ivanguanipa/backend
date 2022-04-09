@@ -21,22 +21,22 @@ describe('modelo Pasaporte', () => {
     pasaporte.amount = 2;
     expect(pasaporte.amount).toEqual(2);
   });
-  it('get created_at', async () => {
-    expect(pasaporte.created_at).toEqual(undefined);
+  it('get createdAt', async () => {
+    expect(pasaporte.createdAt).toEqual(undefined);
   });
-  it('get deleted_at', async () => {
-    expect(pasaporte.deleted_at).toEqual(undefined);
+  it('get deletedAt', async () => {
+    expect(pasaporte.deletedAt).toEqual(undefined);
   });
-  it('get application_date', async () => {
-    expect(pasaporte.application_date).toEqual(date);
+  it('get applicationDate', async () => {
+    expect(pasaporte.applicationDate).toEqual(date);
   });
-  it('get document_id', async () => {
-    expect(pasaporte.document_id).toEqual(1);
+  it('get documentId', async () => {
+    expect(pasaporte.documentId).toEqual(1);
   });
-  it('get appointment_date', async () => {
-    expect(pasaporte.appointment_date).toEqual(date);
+  it('get appointmentDate', async () => {
+    expect(pasaporte.appointmentDate).toEqual(date);
     const ndate = new Date();
-    pasaporte.appointment_date = ndate;
-    expect(pasaporte.appointment_date).toEqual(ndate);
+    pasaporte.appointmentDate = ndate;
+    expect(pasaporte.appointmentDate).toEqual(ndate);
   });
 });

@@ -12,24 +12,24 @@ export class ComandoRegistrarPasaporte {
 
   @IsNumber()
   @ApiProperty()
-  public document_id: number;
+  public documentId: number;
 
   @ApiProperty()
-  public created_at: Date;
+  public createdAt: Date;
 
   @IsDateString()
   @ApiProperty()
-  public application_date: Date;
+  public applicationDate: Date;
 
   @ApiProperty()
-  public deleted_at: Date;
+  public deletedAt: Date;
 
   @IsDateString()
   @ApiProperty()
   public birthdate: Date;
 
   @ApiProperty()
-  public appointment_date: Date;
+  public appointmentDate: Date;
 
   @ApiProperty({ type: 'float' })
   public amount: number;

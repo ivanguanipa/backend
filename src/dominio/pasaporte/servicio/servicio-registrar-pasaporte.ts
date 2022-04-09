@@ -47,26 +47,26 @@ export class ServicioRegistrarPasaporte {
         valid = true;
       }
     }
-    return { amount, appointment_date: date };
+    return { amount, appointmentDate: date };
   }
 
   async ejecutar(pasaporte: Pasaporte) {
-    if (this.isInWeekend(pasaporte.application_date)) {
+    if (this.isInWeekend(pasaporte.applicationDate)) {
       throw new ErrorDeNegocio(
         `No puede agendar cita los días Sábados y Domingos`,
       );
     } else if (
-      await this._repositorioPasaporte.existePasaporte(pasaporte.document_id)
+      await this._repositorioPasaporte.existePasaporte(pasaporte.documentId)
     ) {
       throw new ErrorDeNegocio(
-        `El documento ID ${pasaporte.document_id} ya cuenta con una solicitud de pasaporte activa`,
+        `El documento ID ${pasaporte.documentId} ya cuenta con una solicitud de pasaporte activa`,
       );
     }
 
-    const { amount, appointment_date } = await this.calculateResources(
-      pasaporte.application_date,
+    const { amount, appointmentDate } = await this.calculateResources(
+      pasaporte.applicationDate,
     );
-    pasaporte.appointment_date = appointment_date;
+    pasaporte.appointmentDate = appointmentDate;
     pasaporte.amount = amount;
     const data = await this._repositorioPasaporte.guardar(pasaporte);
     return data;

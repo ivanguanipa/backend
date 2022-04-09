@@ -10,15 +10,15 @@ export class ManejadorRegistrarPasaporte {
   ) {}
 
   async ejecutar(comandoRegistrarPasaporte: ComandoRegistrarPasaporte) {
-    return await this._servicioRegistrarPasaporte.ejecutar(
+    return this._servicioRegistrarPasaporte.ejecutar(
       new Pasaporte(
-        comandoRegistrarPasaporte.document_id,
+        comandoRegistrarPasaporte.documentId,
         comandoRegistrarPasaporte.fullname,
         comandoRegistrarPasaporte.address,
         comandoRegistrarPasaporte.birthdate,
         comandoRegistrarPasaporte.amount,
-        comandoRegistrarPasaporte.application_date,
-        comandoRegistrarPasaporte.appointment_date,
+        comandoRegistrarPasaporte.applicationDate,
+        comandoRegistrarPasaporte.appointmentDate,
       ),
     );
   }
