@@ -5,10 +5,15 @@ import colombianHolidays from 'colombian-holidays';
 
 export class ServicioRegistrarPasaporte {
   AMOUNT_SERVICE: number;
+  saturday: number;
+  sunday: number;
   wekkendDays: Array<number>;
   constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {
     this.AMOUNT_SERVICE = 100;
-    this.wekkendDays = [5, 6];
+    this.saturday = 5;
+    this.sunday = 6;
+    this.AMOUNT_SERVICE = 100;
+    this.wekkendDays = [this.saturday, this.sunday];
   }
 
   isInWeekend(fecha: Date) {
