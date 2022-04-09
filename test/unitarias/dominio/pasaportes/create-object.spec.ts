@@ -20,7 +20,6 @@ describe('Pasaporte Reglas de Negocio', () => {
       ['existePasaporte'],
       sandbox,
     );
-    console.log(obj);
     expect(obj).toBeDefined();
   });
 });
