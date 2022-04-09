@@ -12,15 +12,9 @@ import { daoPasaporteProvider } from 'src/infraestructura/pasaporte/proveedor/da
 import { EntityManager } from 'typeorm';
 import { ComandoRegistrarPasaporte } from 'src/aplicacion/pasaporte/comando/registrar-pasaporte.comando';
 
-describe('PasaporteController', () => {
-  let pasaporteControlador: PasaporteControlador;
+describe('Manejador Eliminar Pasaporte controller', () => {
   let manejadorEliminarPasaporte: ManejadorEliminarPasaporte;
-  let manejadorListarPasaporte: ManejadorListarPasaporte;
-  let manejadorMostrarPasaporte: ManejadorMostrarPasaporte;
-  let servicioRegistrarPasaporte: ServicioRegistrarPasaporte;
-
-  let comandoRegistrarPasaporte: ComandoRegistrarPasaporte;
-
+  let servicioEliminarPasaporte: ServicioEliminarPasaporte;
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       providers: [
@@ -39,42 +33,16 @@ describe('PasaporteController', () => {
       exports: [DaoPasaporte, DaoPasaporteMysql],
     }).compile();
 
-    pasaporteControlador = module.get(PasaporteControlador);
-    servicioRegistrarPasaporte = module.get(ServicioRegistrarPasaporte);
-    manejadorMostrarPasaporte = module.get(ManejadorMostrarPasaporte);
-    manejadorListarPasaporte = module.get(ManejadorListarPasaporte);
+    servicioEliminarPasaporte = module.get(ServicioEliminarPasaporte);
     manejadorEliminarPasaporte = module.get(ManejadorEliminarPasaporte);
-    comandoRegistrarPasaporte = module.get(ComandoRegistrarPasaporte);
   });
 
-  describe('Pasaporte controller', () => {
-    it('deberia obtener lista de pasaportes', async () => {
-      jest
-        .spyOn(manejadorListarPasaporte as any, 'ejecutar')
-        .mockReturnValue(1);
-      const res = await pasaporteControlador.listar();
-      expect(res).toBe(1);
-    });
-    it('deberia mostrar un pasaportes', async () => {
-      jest
-        .spyOn(manejadorMostrarPasaporte as any, 'ejecutar')
-        .mockReturnValue(1);
-      const res = await pasaporteControlador.mostrar(1);
-      expect(res).toBe(1);
-    });
-    it('deberia eliminar un pasaportes', async () => {
-      jest
-        .spyOn(manejadorEliminarPasaporte as any, 'ejecutar')
-        .mockReturnValue(true);
-      const res = await pasaporteControlador.eliminar({ id: 1 });
-      expect(res).toBe(true);
-    });
-    it('deberia crear un pasaportes', async () => {
-      jest
-        .spyOn(servicioRegistrarPasaporte as any, 'ejecutar')
-        .mockReturnValue(true);
-      const res = await pasaporteControlador.crear(comandoRegistrarPasaporte);
-      expect(res).toBe(true);
-    });
+  it('ejecutar metodo', async () => {
+    const result = 1;
+    jest
+      .spyOn(servicioEliminarPasaporte, 'eliminar')
+      .mockReturnValue(Promise.resolve(1));
+    const res = await manejadorEliminarPasaporte.ejecutar({ id: 1 });
+    expect(res).toBe(result);
   });
 });

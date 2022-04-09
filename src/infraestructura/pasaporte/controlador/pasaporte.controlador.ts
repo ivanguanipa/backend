@@ -41,6 +41,7 @@ export class PasaporteControlador {
 
   @Get()
   async listar(): Promise<PasaporteDto[]> {
+    console.log('pasando por controlador');
     return this._manejadorListarPasaporte.ejecutar();
   }
 

@@ -1,9 +1,9 @@
 import { RepositorioPasaporte } from 'src/dominio/pasaporte/puerto/repositorio/repositorio-pasaporte';
 import { Pasaporte } from 'src/dominio/pasaporte/modelo/pasaporte';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PasaporteEntidad } from '../../entidad/pasaporte.entidad';
 import { Repository, IsNull } from 'typeorm';
 import { Injectable } from '@nestjs/common';
+import { PasaporteEntidad } from 'src/infraestructura/pasaporte/entidad/pasaporte.entidad';
 
 @Injectable()
 export class RepositorioPasaporteMysql implements RepositorioPasaporte {
@@ -13,6 +13,7 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
   ) {}
 
   async existePasaporte(document_id: number): Promise<boolean> {
+    console.log('pasando existe pasaporte');
     return (
       (await this.repositorio.count({
         where: [{ document_id, deleted_at: IsNull() }],

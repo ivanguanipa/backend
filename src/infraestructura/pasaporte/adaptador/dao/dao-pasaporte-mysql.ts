@@ -17,6 +17,7 @@ export class DaoPasaporteMysql implements DaoPasaporte {
     );
   }
   async mostrar(id): Promise<PasaporteDto> {
+    console.log('pasando mostrar dao');
     return this.entityManager.query(`SELECT * FROM pasaporte where id = ${id}`);
   }
 }

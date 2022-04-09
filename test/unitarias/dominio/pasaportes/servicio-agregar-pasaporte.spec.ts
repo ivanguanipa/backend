@@ -2,6 +2,7 @@ import { RepositorioPasaporteMysql } from 'src/infraestructura/pasaporte/adaptad
 import { createStubObj } from '../../../util/create-object.stub';
 import { SinonStubbedInstance } from 'sinon';
 import { ServicioRegistrarPasaporte } from 'src/dominio/pasaporte/servicio/servicio-registrar-pasaporte';
+import { Pasaporte } from 'src/dominio/pasaporte/modelo/pasaporte';
 
 describe('Pasaporte Reglas de Negocio', () => {
   let servicioRegistrarPasaporte: ServicioRegistrarPasaporte;
@@ -55,5 +56,76 @@ describe('Pasaporte Reglas de Negocio', () => {
     expect(
       await servicioRegistrarPasaporte.isInWeekend(new Date('2022-01-03')),
     ).toEqual(false);
+  });
+
+  it('debe dar error si es fin de semana metodo', async () => {
+    const result = [1];
+    const date = new Date();
+    const pasaporte = new Pasaporte(
+      1,
+      'string',
+      'string',
+      date,
+      1,
+      date,
+      new Date('2022-04-09'),
+    );
+    try {
+      const res = await servicioRegistrarPasaporte.ejecutar(pasaporte);
+    } catch (error) {
+      expect(error.message).toBe(
+        'No puede agendar cita los días Sábados y Domingos',
+      );
+    }
+  });
+
+  it('debe dar error si ya tiene cita', async () => {
+    const date = new Date();
+    const pasaporte = new Pasaporte(
+      1,
+      'string',
+      'string',
+      date,
+      1,
+      new Date('2022-04-07'),
+      new Date('2022-04-07'),
+    );
+    try {
+      jest
+        .spyOn(repositorioUsuarioStub, 'existePasaporte')
+        .mockReturnValue(true);
+      const res = await servicioRegistrarPasaporte.ejecutar(pasaporte);
+    } catch (error) {
+      expect(error.message).toBe(
+        'El documento ID 1 ya cuenta con una solicitud de pasaporte activa',
+      );
+    }
+  });
+
+  it('debe guardar', async () => {
+    const date = new Date();
+    const pasaporte = new Pasaporte(
+      1,
+      'string',
+      'string',
+      date,
+      1,
+      new Date('2022-04-07'),
+      new Date('2022-04-07'),
+    );
+    jest
+      .spyOn(repositorioUsuarioStub, 'existePasaporte')
+      .mockReturnValue(false);
+    jest
+      .spyOn(servicioRegistrarPasaporte, 'calculateResources')
+      .mockReturnValue(
+        Promise.resolve({
+          amount: 1,
+          appointment_date: new Date(),
+        }),
+      );
+    jest.spyOn(repositorioUsuarioStub, 'guardar').mockReturnValue(true);
+    const res = await servicioRegistrarPasaporte.ejecutar(pasaporte);
+    expect(res).toBe(true);
   });
 });

@@ -1,13 +1,13 @@
 export class Pasaporte {
-  readonly #id: number;
-  readonly #document_id: number;
-  readonly #fullname: string;
-  readonly #address: string;
-  readonly #created_at: Date;
-  readonly #deleted_at: Date;
-  readonly #birthdate: Date;
+  #id: number;
+  #document_id: number;
+  #fullname: string;
+  #address: string;
+  #created_at: Date;
+  #deleted_at: Date;
+  #birthdate: Date;
   #appointment_date: Date;
-  readonly #application_date: Date;
+  #application_date: Date;
   #amount: number;
 
   constructor(
