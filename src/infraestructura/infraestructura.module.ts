@@ -1,6 +1,5 @@
 import * as Joi from '@hapi/joi';
 import { Module } from '@nestjs/common';
-import { UsuarioModule } from './usuario/usuario.module';
 import { PasaporteModule } from './pasaporte/pasaporte.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppLogger } from './configuracion/ceiba-logger.service';
@@ -24,7 +23,6 @@ import { databaseConfigFactory } from './configuracion/database.config';
           .required(),
       }),
     }),
-    UsuarioModule,
     PasaporteModule,
   ],
 })
