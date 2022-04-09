@@ -68,6 +68,6 @@ export class ServicioRegistrarPasaporte {
     );
     pasaporte.appointmentDate = appointmentDate;
     pasaporte.amount = amount;
-    return await this._repositorioPasaporte.guardar(pasaporte);
+    return this._repositorioPasaporte.guardar(pasaporte);
   }
 }
