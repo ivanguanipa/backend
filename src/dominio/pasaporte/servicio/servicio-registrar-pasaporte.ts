@@ -5,13 +5,15 @@ import colombianHolidays from 'colombian-holidays';
 
 export class ServicioRegistrarPasaporte {
   AMOUNT_SERVICE: number;
+  wekkendDays: Array<number>;
   constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {
     this.AMOUNT_SERVICE = 100;
+    this.wekkendDays = [5, 6];
   }
 
   isInWeekend(fecha: Date) {
     const dayOfWeek = new Date(fecha).getDay();
-    return dayOfWeek === 5 || dayOfWeek === 6;
+    return this.wekkendDays.includes(dayOfWeek);
   }
 
   isHolliday(date: Date) {
@@ -31,7 +33,7 @@ export class ServicioRegistrarPasaporte {
     let valid = false;
     while (!valid) {
       date = new Date(date.setDate(date.getDate() + 1));
-      if (date.getDay() != 5 && date.getDay() != 6) {
+      if (!this.wekkendDays.includes(date.getDay())) {
         if (await this.isHolliday(date)) {
           amount = amount * 2;
         }
