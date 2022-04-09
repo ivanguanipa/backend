@@ -13,7 +13,6 @@ export class RepositorioPasaporteMysql implements RepositorioPasaporte {
   ) {}
 
   async existePasaporte(document_id: number): Promise<boolean> {
-    console.log('pasando existe pasaporte');
     return (
       (await this.repositorio.count({
         where: [{ document_id, deleted_at: IsNull() }],
