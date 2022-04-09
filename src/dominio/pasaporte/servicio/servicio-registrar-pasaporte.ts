@@ -8,11 +8,13 @@ export class ServicioRegistrarPasaporte {
   saturday: number;
   sunday: number;
   wekkendDays: Array<number>;
+  doubleAmount: number;
   constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {
     this.AMOUNT_SERVICE = 100;
     this.saturday = 5;
     this.sunday = 6;
     this.AMOUNT_SERVICE = 100;
+    this.doubleAmount = 2;
     this.wekkendDays = [this.saturday, this.sunday];
   }
 
@@ -40,7 +42,7 @@ export class ServicioRegistrarPasaporte {
       date = new Date(date.setDate(date.getDate() + 1));
       if (!this.wekkendDays.includes(date.getDay())) {
         if (await this.isHolliday(date)) {
-          amount = amount * 2;
+          amount = amount * this.doubleAmount;
         }
         valid = true;
       }
