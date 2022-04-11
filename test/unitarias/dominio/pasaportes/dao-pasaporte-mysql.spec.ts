@@ -27,4 +27,11 @@ describe('Pasaporte Reglas de Negocio', () => {
     const res = await daoPasaporteMysql.mostrar(1);
     expect(res).toBe(true);
   });
+
+  it('debe existePasaporte', async () => {
+    const obj = true;
+    jest.spyOn(entityManager, 'query').mockReturnValue([1]);
+    const res = await daoPasaporteMysql.existePasaporte(2);
+    expect(res).toBe(true);
+  });
 });
