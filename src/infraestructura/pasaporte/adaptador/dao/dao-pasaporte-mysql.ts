@@ -3,7 +3,6 @@ import { InjectEntityManager } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { DaoPasaporte } from 'src/dominio/pasaporte/puerto/dao/dao-pasaporte';
 import { PasaporteDto } from 'src/aplicacion/pasaporte/consulta/dto/pasaporte.dto';
-import { IsNull } from 'typeorm';
 
 @Injectable()
 export class DaoPasaporteMysql implements DaoPasaporte {
