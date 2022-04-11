@@ -3,6 +3,7 @@ import { InjectEntityManager } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { DaoPasaporte } from 'src/dominio/pasaporte/puerto/dao/dao-pasaporte';
 import { PasaporteDto } from 'src/aplicacion/pasaporte/consulta/dto/pasaporte.dto';
+import { IsNull } from 'typeorm';
 
 @Injectable()
 export class DaoPasaporteMysql implements DaoPasaporte {
@@ -18,5 +19,12 @@ export class DaoPasaporteMysql implements DaoPasaporte {
   }
   async mostrar(id): Promise<PasaporteDto> {
     return this.entityManager.query(`SELECT * FROM pasaporte where id = ${id}`);
+  }
+
+  async existePasaporte(documentId: number): Promise<boolean> {
+    const res = await this.entityManager.query(
+      `SELECT * FROM pasaporte where documentId = ${documentId}`,
+    );
+    return res.length > 0;
   }
 }

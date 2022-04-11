@@ -1,4 +1,5 @@
 import { RepositorioPasaporte } from '../puerto/repositorio/repositorio-pasaporte';
+import { DaoPasaporte } from '../puerto/dao/dao-pasaporte';
 import { Pasaporte } from '../modelo/pasaporte';
 import { ErrorDeNegocio } from 'src/dominio/errores/error-de-negocio';
 import colombianHolidays from 'colombian-holidays';
@@ -9,7 +10,10 @@ export class ServicioRegistrarPasaporte {
   sunday: number;
   wekkendDays: Array<number>;
   doubleAmount: number;
-  constructor(private readonly _repositorioPasaporte: RepositorioPasaporte) {
+  constructor(
+    private readonly _repositorioPasaporte: RepositorioPasaporte,
+    private readonly _daoPasaporte: DaoPasaporte,
+  ) {
     this.AMOUNT_SERVICE = 100;
     this.saturday = 5;
     this.sunday = 6;
@@ -51,13 +55,12 @@ export class ServicioRegistrarPasaporte {
   }
 
   async ejecutar(pasaporte: Pasaporte) {
+    console.log(this._daoPasaporte);
     if (this.isInWeekend(pasaporte.applicationDate)) {
       throw new ErrorDeNegocio(
         `No puede agendar cita los días Sábados y Domingos`,
       );
-    } else if (
-      await this._repositorioPasaporte.existePasaporte(pasaporte.documentId)
-    ) {
+    } else if (await this._daoPasaporte.existePasaporte(pasaporte.documentId)) {
       throw new ErrorDeNegocio(
         `El documento ID ${pasaporte.documentId} ya cuenta con una solicitud de pasaporte activa`,
       );
