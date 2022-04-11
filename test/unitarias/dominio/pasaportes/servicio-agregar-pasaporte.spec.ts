@@ -67,7 +67,7 @@ describe('Pasaporte Reglas de Negocio', () => {
       'string',
       date,
       1,
-      date,
+      new Date('2022-04-09'),
       new Date('2022-04-09'),
     );
     try {
