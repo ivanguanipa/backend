@@ -1,7 +1,7 @@
 import { RepositorioPasaporte } from 'src/dominio/pasaporte/puerto/repositorio/repositorio-pasaporte';
 import { Pasaporte } from 'src/dominio/pasaporte/modelo/pasaporte';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, IsNull } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { PasaporteEntidad } from 'src/infraestructura/pasaporte/entidad/pasaporte.entidad';
 
