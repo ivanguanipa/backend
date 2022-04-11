@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class MigracionUsuario1583873676081 implements MigrationInterface {
   name = 'MigracionUsuario1583873676081';
 
-  public async up(queryRunner: QueryRunner): Promise<any> {
+  public async up(queryRunner: QueryRunner): Promise<void> {
     const query =
       'CREATE TABLE IF NOT EXISTS `USUARIO` (`id` int NOT NULL AUTO_INCREMENT, ' +
       ' `nombre` varchar(255) NOT NULL, `clave` varchar(255) NOT NULL,' +
@@ -11,7 +11,7 @@ export class MigracionUsuario1583873676081 implements MigrationInterface {
     await queryRunner.query(query, undefined);
   }
 
-  public async down(queryRunner: QueryRunner): Promise<any> {
+  public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('DROP TABLE `USUARIO`', undefined);
   }
 }
