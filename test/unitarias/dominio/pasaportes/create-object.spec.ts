@@ -16,10 +16,7 @@ describe('Pasaporte Reglas de Negocio', () => {
   });
 
   it('createStubObj con sandbox', async () => {
-    const obj = createStubObj<RepositorioPasaporteMysql>(
-      ['existePasaporte'],
-      sandbox,
-    );
+    const obj = createStubObj<RepositorioPasaporteMysql>(['guardar'], sandbox);
     expect(obj).toBeDefined();
   });
 });

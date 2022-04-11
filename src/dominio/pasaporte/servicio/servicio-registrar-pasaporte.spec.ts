@@ -2,19 +2,25 @@ import { RepositorioPasaporteMysql } from 'src/infraestructura/pasaporte/adaptad
 import { SinonStubbedInstance } from 'sinon';
 import { ServicioRegistrarPasaporte } from 'src/dominio/pasaporte/servicio/servicio-registrar-pasaporte';
 import { createStubObj } from 'test/util/create-object.stub';
+import { DaoPasaporteMysql } from 'src/infraestructura/pasaporte/adaptador/dao/dao-pasaporte-mysql';
 
 describe('ServicioRegistrarPasaporte', () => {
   let servicioRegistrarPasaporte: ServicioRegistrarPasaporte;
   let repositorioUsuarioStub: SinonStubbedInstance<RepositorioPasaporteMysql>;
+  let daoUsuarioStub: SinonStubbedInstance<DaoPasaporteMysql>;
   beforeEach(() => {
     repositorioUsuarioStub = createStubObj<RepositorioPasaporteMysql>([
-      'existePasaporte',
       'guardar',
-      'mostrar',
       'eliminar',
+    ]);
+    daoUsuarioStub = createStubObj<DaoPasaporteMysql>([
+      'listar',
+      'mostrar',
+      'existePasaporte',
     ]);
     servicioRegistrarPasaporte = new ServicioRegistrarPasaporte(
       repositorioUsuarioStub,
+      daoUsuarioStub,
     );
   });
 

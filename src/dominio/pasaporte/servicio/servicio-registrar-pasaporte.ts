@@ -55,7 +55,6 @@ export class ServicioRegistrarPasaporte {
   }
 
   async ejecutar(pasaporte: Pasaporte) {
-    console.log(this._daoPasaporte);
     if (this.isInWeekend(pasaporte.applicationDate)) {
       throw new ErrorDeNegocio(
         `No puede agendar cita los días Sábados y Domingos`,

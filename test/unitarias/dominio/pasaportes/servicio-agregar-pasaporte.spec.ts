@@ -3,19 +3,25 @@ import { createStubObj } from '../../../util/create-object.stub';
 import { SinonStubbedInstance } from 'sinon';
 import { ServicioRegistrarPasaporte } from 'src/dominio/pasaporte/servicio/servicio-registrar-pasaporte';
 import { Pasaporte } from 'src/dominio/pasaporte/modelo/pasaporte';
+import { DaoPasaporteMysql } from 'src/infraestructura/pasaporte/adaptador/dao/dao-pasaporte-mysql';
 
 describe('Pasaporte Reglas de Negocio', () => {
   let servicioRegistrarPasaporte: ServicioRegistrarPasaporte;
   let repositorioUsuarioStub: SinonStubbedInstance<RepositorioPasaporteMysql>;
+  let daoUsuarioStub: SinonStubbedInstance;
   beforeEach(() => {
     repositorioUsuarioStub = createStubObj<RepositorioPasaporteMysql>([
-      'existePasaporte',
       'guardar',
-      'mostrar',
       'eliminar',
+    ]);
+    daoUsuarioStub = createStubObj<DaoPasaporteMysql>([
+      'listar',
+      'mostrar',
+      'existePasaporte',
     ]);
     servicioRegistrarPasaporte = new ServicioRegistrarPasaporte(
       repositorioUsuarioStub,
+      daoUsuarioStub,
     );
   });
 
@@ -91,9 +97,7 @@ describe('Pasaporte Reglas de Negocio', () => {
       new Date('2022-04-07'),
     );
     try {
-      jest
-        .spyOn(repositorioUsuarioStub, 'existePasaporte')
-        .mockReturnValue(true);
+      jest.spyOn(daoUsuarioStub, 'existePasaporte').mockReturnValue(true);
       const res = await servicioRegistrarPasaporte.ejecutar(pasaporte);
     } catch (error) {
       expect(error.message).toBe(
@@ -113,9 +117,7 @@ describe('Pasaporte Reglas de Negocio', () => {
       new Date('2022-04-07'),
       new Date('2022-04-07'),
     );
-    jest
-      .spyOn(repositorioUsuarioStub, 'existePasaporte')
-      .mockReturnValue(false);
+    jest.spyOn(daoUsuarioStub, 'existePasaporte').mockReturnValue(false);
     jest
       .spyOn(servicioRegistrarPasaporte, 'calculateResources')
       .mockReturnValue(

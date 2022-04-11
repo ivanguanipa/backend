@@ -47,17 +47,7 @@ describe('Pasaporte Reglas de Negocio', () => {
     const res = await repositorioPasaporteMysql.guardar(pasaporte);
     expect(res).toBe(true);
   });
-  it('debe existePasaporte', async () => {
-    jest.spyOn(repositorioUsuarioStub, 'count').mockReturnValue(true);
-    const res = await repositorioPasaporteMysql.existePasaporte(1);
-    expect(res).toBe(true);
-  });
-  it('debe mostrar', async () => {
-    jest.spyOn(repositorioUsuarioStub, 'findOne').mockReturnValue(true);
-    const res = await repositorioPasaporteMysql.mostrar(1);
-    expect(res).toBe(true);
-  });
-  it('debe mostrar', async () => {
+  it('debe eliminar', async () => {
     jest.spyOn(repositorioUsuarioStub, 'update').mockReturnValue(true);
     const res = await repositorioPasaporteMysql.eliminar(1);
     expect(res).toEqual({ success: true });
